@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:padding="15dp"
     android:layout_height="match_parent"
+    android:padding="15dp"
     tools:context=".view.CadastroMovimentacaoActivity">
 
     <TextView
         android:id="@+id/txt_msgCadastro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="15dp"
         android:text="Cadastro de Operação"
         android:textSize="20sp"
@@ -27,18 +27,19 @@
         android:layout_marginBottom="15dp"
         android:text="Data"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextDate"
+        app:layout_constraintBottom_toTopOf="@+id/edtData"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_msgCadastro" />
 
     <EditText
-        android:id="@+id/editTextDate"
+        android:id="@+id/edtData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="22dp"
         android:ems="10"
         android:inputType="date"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/txt_valor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +69,7 @@
         app:layout_constraintBottom_toTopOf="@+id/edt_valor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+        app:layout_constraintTop_toBottomOf="@+id/edtData" />
 
     <TextView
         android:id="@+id/txt_operacao"
@@ -77,18 +78,18 @@
         android:layout_marginBottom="15dp"
         android:text="Operação"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup2"
+        app:layout_constraintBottom_toTopOf="@+id/rdOperacao"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_valor" />
 
     <RadioGroup
-        android:id="@+id/radioGroup2"
+        android:id="@+id/rdOperacao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/dropdown_operacao"
+        android:layout_marginBottom="34dp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_classificacao"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_operacao">
@@ -106,15 +107,37 @@
             android:text="Crédito" />
     </RadioGroup>
 
+    <TextView
+        android:id="@+id/txt_classificacao"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="247dp"
+        android:text="Classificação"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Spinner
         android:id="@+id/dropdown_operacao"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginBottom="212dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="170dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_classificacao" />
+
+    <Button
+        android:id="@+id/btn_salvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Salvar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dropdown_operacao" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
