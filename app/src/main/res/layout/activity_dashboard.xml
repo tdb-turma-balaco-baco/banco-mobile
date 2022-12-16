@@ -10,8 +10,8 @@
         android:id="@+id/btn_consultaExtrato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="44dp"
         android:text="Consultar Extrato"
         app:layout_constraintBottom_toTopOf="@+id/btn_pesquisa"
         app:layout_constraintEnd_toEndOf="@+id/btn_pesquisa" />
@@ -27,10 +27,20 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_pesquisa" />
 
     <Button
+        android:id="@+id/btn_sair"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="160dp"
+        android:text="Sair"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_listaClassificada" />
+
+    <Button
         android:id="@+id/btn_cadastro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="51dp"
+        android:layout_marginBottom="34dp"
         android:text="Cadastrar Operação"
         app:layout_constraintBottom_toTopOf="@+id/btn_consultaExtrato"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,10 +50,11 @@
         android:id="@+id/btn_pesquisa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="179dp"
+        android:layout_marginBottom="232dp"
         android:text="Pesquisar Movimentação"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -58,7 +69,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imgIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="23dp"
