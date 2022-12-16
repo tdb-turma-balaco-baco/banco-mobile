@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">finApp</string>
+
+    <string-array name="operacoes_debito">
+        <item>Moradia</item>
+        <item>Saúde</item>
+        <item>Outros</item>
+    </string-array>
+
+    <string-array name="operacoes_credito">
+        <item>Salário</item>
+        <item>Outros</item>
+    </string-array>
+
 </resources>
