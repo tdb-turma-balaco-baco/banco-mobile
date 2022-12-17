@@ -15,7 +15,7 @@ public class DashboardActivity extends AppCompatActivity {
     private Button btn_classifiedList;
     private Button btn_searchStatement;
     private Button btn_exit;
-    private Button btn_registerExchange;
+    private Button btn_registerTransaction;
     private Button btn_search;
 
     @Override
@@ -29,7 +29,7 @@ public class DashboardActivity extends AppCompatActivity {
 
 
     private void initializeComponents(){
-        btn_registerExchange = findViewById(R.id.btn_cadastro);
+        btn_registerTransaction = findViewById(R.id.btn_cadastro);
         btn_exit = findViewById(R.id.btn_sair);
         btn_search = findViewById(R.id.btn_pesquisa);
         btn_searchStatement = findViewById(R.id.btn_consultaExtrato);
@@ -37,10 +37,10 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void setButtonActions(){
-        btn_registerExchange.setOnClickListener(new View.OnClickListener() {
+        btn_registerTransaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openRegisterExchangeActivity();
+                openRegisterTransactionActivity();
             }
         });
 
@@ -75,9 +75,9 @@ public class DashboardActivity extends AppCompatActivity {
 
     }
 
-    private void openRegisterExchangeActivity(){
-        Intent registerExchange = new Intent(this, CadastroMovimentacaoActivity.class);
-        startActivity(registerExchange);
+    private void openRegisterTransactionActivity(){
+        Intent registerTransaction = new Intent(this, CadastroMovimentacaoActivity.class);
+        startActivity(registerTransaction);
     }
 
     private void openClassifiedListActivity(){
