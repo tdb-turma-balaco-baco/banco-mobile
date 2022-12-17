@@ -22,6 +22,7 @@ import com.example.finapp.domain.dtos.PesquisaDto;
 import com.example.finapp.domain.enums.Operacao;
 import com.example.finapp.domain.models.Movimentacao;
 import com.example.finapp.view.adapter.TransacaoBancariaAdapter;
+import com.example.finapp.view.util.CalendarUtil;
 
 import org.w3c.dom.Text;
 
@@ -49,6 +50,7 @@ public class PesquisaActivity extends AppCompatActivity {
 
         initializeComponents();
         setEditTextActions();
+        setButtonAction();
     }
 
     private void initializeComponents(){
@@ -75,32 +77,16 @@ public class PesquisaActivity extends AppCompatActivity {
         edt_dateStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openCalendar(edt_dateStart);
+                CalendarUtil.openCalendar(PesquisaActivity.this, edt_dateStart);
             }
         });
 
         edt_dateEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openCalendar(edt_dateEnd);
+                CalendarUtil.openCalendar(PesquisaActivity.this, edt_dateEnd);
             }
         });
-    }
-
-    private void openCalendar(EditText edtDate){
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-        DatePickerDialog dialog = new DatePickerDialog(PesquisaActivity.this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                calendar.set(year,month,dayOfMonth);
-                edtDate.setText(dateFormat.format(calendar.getTime()));
-            }
-        },year,month,day);
-        dialog.show();
     }
 
     private void searchTransactions(){
@@ -110,6 +96,7 @@ public class PesquisaActivity extends AppCompatActivity {
         }
         else{
             //Busca banco
+            Toast.makeText(this,"Parou", Toast.LENGTH_SHORT).show();
             updateTransactionList(new ArrayList<>());
         }
 

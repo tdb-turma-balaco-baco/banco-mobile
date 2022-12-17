@@ -16,16 +16,14 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
-public class TransacaoBancariaAdapter extends RecyclerView.Adapter<TransacaoBancariaHolder> {
+public class ClassificacaoAdapter extends RecyclerView.Adapter<TransacaoBancariaHolder> {
 
     Context context;
     List<Movimentacao> bankTransactions;
-    SimpleDateFormat dateFormat;
 
-    public TransacaoBancariaAdapter(Context context, List<Movimentacao> bankTransactions) {
+    public ClassificacaoAdapter(Context context, List<Movimentacao> bankTransactions) {
         this.context = context;
         this.bankTransactions = bankTransactions;
-        dateFormat = new SimpleDateFormat("dd/MM/yyyy",new Locale("pt","BR"));
     }
 
     @NonNull
@@ -42,7 +40,6 @@ public class TransacaoBancariaAdapter extends RecyclerView.Adapter<TransacaoBanc
 
         holder.txtValor.setTextColor(getOperationColor(context, movimentacao.getOperationType()));
         holder.txtValor.setText(NumberFormat.getCurrencyInstance().format(movimentacao.getMoney()));
-        holder.txtData.setText(dateFormat.format(movimentacao.getDate()));
     }
 
     @Override

@@ -31,7 +31,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/v_txtClassificacao"
+                    android:id="@+id/c_txtClassificacao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
@@ -39,7 +39,7 @@
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/v_txtOperacao"
+                    android:id="@+id/c_txtOperacao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="DÉBITO" />
@@ -49,24 +49,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/v_txtValor"
+                    android:id="@+id/c_txtValor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
+                    android:textAlignment="center"
                     android:text="- R$ 234,23"
-                    android:textAlignment="viewEnd"
                     android:textColor="@color/debito"
                     android:textSize="24sp" />
 
-                <TextView
-                    android:id="@+id/v_txtData"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="12/10/2001"
-                    android:textAlignment="viewEnd" />
             </LinearLayout>
 
         </LinearLayout>
