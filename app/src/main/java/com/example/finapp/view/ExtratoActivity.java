@@ -13,6 +13,7 @@ import com.example.finapp.domain.models.Movimentacao;
 import com.example.finapp.view.adapter.TransacaoBancariaAdapter;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class ExtratoActivity extends AppCompatActivity {
@@ -34,12 +35,18 @@ public class ExtratoActivity extends AppCompatActivity {
     }
 
     private void populateTransactionList(){
-        Date dataAtual = new Date();
+        Calendar calendar = Calendar.getInstance();
         ArrayList<Movimentacao> movimentacoes = new ArrayList<Movimentacao>(){{
-            add(new Movimentacao("Moradia", Operacao.DEBITO, dataAtual, 123.23));
-            add(new Movimentacao("Salário", Operacao.CREDITO, dataAtual, 5123.23));
-            add(new Movimentacao("Moradia", Operacao.DEBITO, dataAtual, 123.23));
-            add(new Movimentacao("Saúde", Operacao.DEBITO, dataAtual, 2433.13));
+            add(new Movimentacao("Moradia", Operacao.DEBITO, calendar.getTime(), 123.23));
+            add(new Movimentacao("Salário", Operacao.CREDITO, calendar.getTime(), 5123.23));
+            add(new Movimentacao("Salário", Operacao.CREDITO, calendar.getTime(), 5123.23));
+            add(new Movimentacao("Moradia", Operacao.DEBITO, calendar.getTime(), 123.23));
+            add(new Movimentacao("Moradia", Operacao.DEBITO, calendar.getTime(), 123.23));
+            add(new Movimentacao("Moradia", Operacao.DEBITO, calendar.getTime(), 123.23));
+            add(new Movimentacao("Saúde", Operacao.DEBITO, calendar.getTime(), 2433.13));
+            add(new Movimentacao("Saúde", Operacao.DEBITO, calendar.getTime(), 2433.13));
+            add(new Movimentacao("Saúde", Operacao.DEBITO, calendar.getTime(), 2433.13));
+            add(new Movimentacao("Saúde", Operacao.DEBITO, calendar.getTime(), 2433.13));
         }};
 
         TransacaoBancariaAdapter tbAdapter = new TransacaoBancariaAdapter(this, movimentacoes);
