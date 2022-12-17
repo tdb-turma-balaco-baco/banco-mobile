@@ -29,7 +29,7 @@ public class ClassificacaoAdapter extends RecyclerView.Adapter<TransacaoBancaria
     @NonNull
     @Override
     public TransacaoBancariaHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new TransacaoBancariaHolder(LayoutInflater.from(context).inflate(R.layout.activity_lista_dados_bancarios,parent,false));
+        return new TransacaoBancariaHolder(LayoutInflater.from(context).inflate(R.layout.activity_lista_categorias,parent,false));
     }
 
     @Override
