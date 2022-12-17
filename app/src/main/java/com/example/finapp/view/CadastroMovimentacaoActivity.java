@@ -10,19 +10,27 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import com.example.finapp.R;
+import com.example.finapp.domain.models.Movimentacao;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class CadastroMovimentacaoActivity extends AppCompatActivity {
 
     private EditText edtDate;
     private Button btn_register;
     private RadioButton rdCredit;
+    private RadioGroup rg_operation;
     private RadioButton rdDebit;
     private Spinner dropdown_classification;
+
+    private SimpleDateFormat dateFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +48,10 @@ public class CadastroMovimentacaoActivity extends AppCompatActivity {
         btn_register = findViewById(R.id.btn_salvar);
         rdCredit = findViewById(R.id.rb_credito);
         rdDebit = findViewById(R.id.rb_debito);
+        rg_operation = findViewById(R.id.rdOperacao);
         dropdown_classification = findViewById(R.id.dropdown_operacao);
+
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt","BR"));
     }
 
     private void setButtonAction(){
@@ -111,6 +122,10 @@ public class CadastroMovimentacaoActivity extends AppCompatActivity {
 
     private void saveOperation(){
 
+    }
+
+    private Movimentacao createTransaction(){
+        return null;
     }
 
 }

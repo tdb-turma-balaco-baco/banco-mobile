@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">finApp</string>
+    <string name="msg_erro_pesquisa_dto_invalido">Os dados de busca estão incorretos!</string>
 
     <string-array name="operacoes_debito">
         <item>Moradia</item>

@@ -12,7 +12,7 @@
         android:id="@+id/txt_msgMovimentacoes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Histórico de Movimentações"
+        android:text="Pesquisa"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_dataInicial" />
 
     <RadioGroup
-        android:id="@+id/rdGroup"
+        android:id="@+id/p_rdGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
@@ -72,21 +72,21 @@
         app:layout_constraintTop_toBottomOf="@+id/edt_dtFim">
 
         <RadioButton
-            android:id="@+id/rb_debito"
+            android:id="@+id/p_rb_debito"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Débito" />
 
         <RadioButton
-            android:id="@+id/rb_credito"
+            android:id="@+id/p_rb_credito"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Crédito" />
 
         <RadioButton
-            android:id="@+id/rb_todas"
+            android:id="@+id/p_rb_todas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -97,9 +97,17 @@
         android:id="@+id/btn_buscar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="Buscar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rdGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/p_rdGroup" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/p_rv_transactions"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_buscar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
