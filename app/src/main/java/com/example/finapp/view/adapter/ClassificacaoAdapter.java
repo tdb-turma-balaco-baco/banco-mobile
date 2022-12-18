@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
-public class ClassificacaoAdapter extends RecyclerView.Adapter<TransacaoBancariaHolder> {
+public class ClassificacaoAdapter extends RecyclerView.Adapter<ClassificacaoHolder> {
 
     Context context;
     List<Movimentacao> bankTransactions;
@@ -28,12 +28,12 @@ public class ClassificacaoAdapter extends RecyclerView.Adapter<TransacaoBancaria
 
     @NonNull
     @Override
-    public TransacaoBancariaHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new TransacaoBancariaHolder(LayoutInflater.from(context).inflate(R.layout.activity_lista_categorias,parent,false));
+    public ClassificacaoHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ClassificacaoHolder(LayoutInflater.from(context).inflate(R.layout.activity_lista_categorias,parent,false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TransacaoBancariaHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ClassificacaoHolder holder, int position) {
         Movimentacao movimentacao = bankTransactions.get(position);
         holder.txtClassificacao.setText(movimentacao.getClassification());
         holder.txtOperacao.setText(movimentacao.getOperationType().toString());

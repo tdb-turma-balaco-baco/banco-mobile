@@ -5,16 +5,27 @@ import com.example.finapp.domain.enums.Operacao;
 import java.util.Date;
 
 public class Movimentacao {
+    private int id;
     private String classification;
     private Operacao operationType;
     private Date date;
     private Double money;
+
+    public Movimentacao(){}
 
     public Movimentacao(String classification, Operacao operationType, Date date, Double money) {
         this.classification = classification;
         this.operationType = operationType;
         this.date = date;
         this.money = money;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getClassification() {
