@@ -2,13 +2,10 @@ package com.example.finapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -16,7 +13,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.finapp.R;
+import com.example.finapp.database.TransacaoDAO;
 import com.example.finapp.domain.enums.Operacao;
+import com.example.finapp.domain.exceptions.DatabaseException;
 import com.example.finapp.domain.models.Movimentacao;
 import com.example.finapp.view.util.CalendarUtil;
 
@@ -37,6 +36,8 @@ public class CadastroMovimentacaoActivity extends AppCompatActivity {
     private Spinner dropdown_classification;
 
     private SimpleDateFormat dateFormat;
+
+    private TransacaoDAO transacaoDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,8 @@ public class CadastroMovimentacaoActivity extends AppCompatActivity {
         dropdown_classification = findViewById(R.id.dropdown_operacao);
 
         dateFormat = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt","BR"));
+        transacaoDAO = new TransacaoDAO(this);
+        transacaoDAO.openConnection();
     }
 
     private void setButtonAction(){
@@ -111,12 +114,24 @@ public class CadastroMovimentacaoActivity extends AppCompatActivity {
     }
 
     private void saveOperation(){
-        Movimentacao transaction = createTransaction();
-        if(transaction == null){
-            Toast.makeText(this,R.string.msg_erro_movimentacao_model, Toast.LENGTH_SHORT).show();
-        }else{
-            //Insere
+        try {
+            Movimentacao transaction = createTransaction();
+            if (transaction == null) {
+                Toast.makeText(this, R.string.msg_erro_movimentacao_model, Toast.LENGTH_SHORT).show();
+            } else {
+                transacaoDAO.insertTransaction(transaction);
+                cleanFields();
+                Toast.makeText(this,"Dados salvos com sucesso!", Toast.LENGTH_SHORT).show();
+            }
+        }catch (DatabaseException ex){
+            Toast.makeText(this,"Erro banco de dados!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void cleanFields(){
+        edtDate.setText("");
+        edtMoney.setText("");
+        rg_operation.clearCheck();
     }
 
     private Movimentacao createTransaction(){
@@ -153,6 +168,18 @@ public class CadastroMovimentacaoActivity extends AppCompatActivity {
             default:
                 return null;
         }
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        transacaoDAO.openConnection();
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        transacaoDAO.closeConnection();
     }
 
 }

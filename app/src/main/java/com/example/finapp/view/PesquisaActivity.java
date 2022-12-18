@@ -18,8 +18,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.finapp.R;
+import com.example.finapp.database.TransacaoDAO;
 import com.example.finapp.domain.dtos.PesquisaDto;
 import com.example.finapp.domain.enums.Operacao;
+import com.example.finapp.domain.exceptions.DatabaseException;
 import com.example.finapp.domain.models.Movimentacao;
 import com.example.finapp.view.adapter.TransacaoBancariaAdapter;
 import com.example.finapp.view.util.CalendarUtil;
@@ -31,6 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class PesquisaActivity extends AppCompatActivity {
@@ -42,6 +45,8 @@ public class PesquisaActivity extends AppCompatActivity {
     private RadioGroup rg_operation;
 
     private SimpleDateFormat dateFormat;
+
+    private TransacaoDAO transacaoDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +61,15 @@ public class PesquisaActivity extends AppCompatActivity {
     private void initializeComponents(){
         edt_dateEnd = findViewById(R.id.edt_dtFim);
         edt_dateStart = findViewById(R.id.edt_dtInicio);
-        btn_search = findViewById(R.id.btn_pesquisa);
+        btn_search = findViewById(R.id.btn_buscar);
         rg_operation = findViewById(R.id.p_rdGroup);
         rv_bankTransactions = findViewById(R.id.p_rv_transactions);
         rv_bankTransactions.setLayoutManager(new LinearLayoutManager(this));
 
         dateFormat = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt","BR"));
+
+        transacaoDAO = new TransacaoDAO(this);
+        transacaoDAO.openConnection();
     }
 
     private void setButtonAction(){
@@ -95,9 +103,8 @@ public class PesquisaActivity extends AppCompatActivity {
             Toast.makeText(this,R.string.msg_erro_pesquisa_dto_invalido, Toast.LENGTH_SHORT).show();
         }
         else{
-            //Busca banco
-            Toast.makeText(this,"Parou", Toast.LENGTH_SHORT).show();
-            updateTransactionList(new ArrayList<>());
+            List<Movimentacao> transactions = getSearchTransactions(pesquisaDto);
+            updateTransactionList(transactions);
         }
 
     }
@@ -123,9 +130,9 @@ public class PesquisaActivity extends AppCompatActivity {
         switch (radioButtonSelected)
         {
             case R.id.p_rb_debito:
-                return Operacao.DEBITO.ordinal();
+                return Operacao.DEBITO.getOrdem();
             case R.id.p_rb_credito:
-                return Operacao.CREDITO.ordinal();
+                return Operacao.CREDITO.getOrdem();
             case R.id.p_rb_todas:
                 return 0;
             default:
@@ -133,8 +140,31 @@ public class PesquisaActivity extends AppCompatActivity {
         }
     }
 
-    private void updateTransactionList(ArrayList<Movimentacao> transactions){
-        TransacaoBancariaAdapter tbAdapter = new TransacaoBancariaAdapter(this, transactions);
+    private void updateTransactionList(List<Movimentacao> transactions){
+        TransacaoBancariaAdapter tbAdapter = new TransacaoBancariaAdapter(PesquisaActivity.this, transactions);
         rv_bankTransactions.setAdapter(tbAdapter);
+    }
+
+    private List<Movimentacao> getSearchTransactions(PesquisaDto pesquisaDto){
+        try{
+            return transacaoDAO.getFilteredTransactions(pesquisaDto.getStartDate(),
+                    pesquisaDto.getEndDate(),
+                    pesquisaDto.getFilterOperation());
+        }catch (DatabaseException ex){
+            Toast.makeText(this, "Erro banco de dados!", Toast.LENGTH_SHORT).show();
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        transacaoDAO.openConnection();
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        transacaoDAO.closeConnection();
     }
 }

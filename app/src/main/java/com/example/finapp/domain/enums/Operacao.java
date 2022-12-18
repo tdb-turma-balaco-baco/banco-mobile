@@ -12,6 +12,10 @@ public enum Operacao {
         this.ordem = ordem;
     }
 
+    public int getOrdem(){
+        return ordem;
+    }
+
     @Override
     public String toString() {
         return nomeOperacao;
